@@ -24,6 +24,11 @@ class Settings(BaseSettings):
     SWAGGER_USERNAME: str = "admin"
     SWAGGER_PASSWORD: str = "radius"
 
+    # RADIUS CoA / Disconnect Configuration
+    RADIUS_NAS_IP: str = "103.242.104.17"
+    RADIUS_SECRET: str = "ljnsecrad"
+    RADIUS_COA_PORT: int = 3799
+
     model_config = SettingsConfigDict(
         env_file=".env",
         case_sensitive=True,

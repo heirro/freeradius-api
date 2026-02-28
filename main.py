@@ -11,6 +11,7 @@ from src.api.endpoints import (
     radreply_router,
     radusergroup_router,
     users_router,
+    disconnect_router,
 )
 from src.api.endpoints.radacct import router as radacct_router
 from src.api.endpoints.auth import get_current_username
@@ -47,6 +48,7 @@ app.include_router(radgroupcheck_router, prefix="/api/v1", tags=["radgroupcheck"
 app.include_router(radreply_router, prefix="/api/v1", tags=["radreply"])
 app.include_router(nas_router, prefix="/api/v1", tags=["nas"])
 app.include_router(radacct_router, prefix="/api/v1/radacct", tags=["radacct"])
+app.include_router(disconnect_router, prefix="/api/v1", tags=["disconnect"])
 
 
 @app.get("/docs", include_in_schema=False)
