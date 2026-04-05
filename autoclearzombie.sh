@@ -13,7 +13,7 @@ DB_PASS="radius_password"
 DB_NAME="radius"
 
 # Session dianggap zombie jika sudah idle lebih dari N jam
-ZOMBIE_THRESHOLD_HOURS=24
+ZOMBIE_THRESHOLD_HOURS=30
 
 # --- Eksekusi ---
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
@@ -25,7 +25,7 @@ RESULT=$(mariadb -h "$DB_HOST" -P "$DB_PORT" -u "$DB_USER" -p"$DB_PASS" "$DB_NAM
         acctterminatecause = 'Admin-Reset',
         acctsessiontime    = TIMESTAMPDIFF(SECOND, acctstarttime, NOW())
     WHERE acctstoptime IS NULL
-      AND acctstarttime < DATE_SUB(NOW(), INTERVAL $ZOMBIE_THRESHOLD_HOURS HOUR);
+      AND acctstarttime < DATE_SUB(NOW(), INTERVAL $ZOMBIE_THRESHOLD_HOURS MINUTE);
     SELECT ROW_COUNT();
 " 2>&1)
 
